@@ -1,4 +1,4 @@
-package org.example.org.example.lesson03
+package org.lessons.lesson03
 
 // 1. Название мероприятия (неизменяемая публичная переменная известная на момент написания)
 val eventName: String = "Monster Hackaton"

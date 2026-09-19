@@ -1,4 +1,4 @@
-package org.example.lesson03
+package org.lessons.lesson03
 
 val name: String = "Alice"
 var age = 35

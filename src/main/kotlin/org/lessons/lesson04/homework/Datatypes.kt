@@ -1,4 +1,4 @@
-package org.example.org.example.lesson04.homework
+package org.lessons.lesson04.homework
 
 
 import java.math.BigDecimal
