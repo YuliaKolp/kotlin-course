@@ -58,7 +58,7 @@ fun spyGame(inString: String, doEncrypt: Boolean = true): String{
 
 }
 
-fun timesTable() {
+fun timesTable(columnNum:Int, rowsNum:Int) {
     /*
     9. Таблица умножения
     Напишите функцию, которая принимает два числа и выводит таблицу умножения, у которой в заголовках столбцов и строк
@@ -66,10 +66,28 @@ fun timesTable() {
     должен быть выровнен по правому краю с помощью шаблона с форматированием строк. Размер форматирования каждой строки
     нужно вычислять динамически для каждого столбца. Результат должен быть похож на этот пример:
      */
-    println("1. Используя вложенный цикл реализовать таблицу умножения, как на картинке")
-    for (i in 1..10){
-        for (j in 1 .. 10){
-            print("${i * j} ")
+    // add one for extra separator
+    val maxMultiplicationResultSize: Int = (columnNum * rowsNum).toString().length + 1
+    var multiplicationResultStr: String = ""
+    var staffSpaces:String = ""
+    var strToPrint:String = ""
+
+
+    for (i in 0..columnNum){
+        for (j in 0 .. rowsNum){
+            when {
+                (i == 0 && j != 0) -> multiplicationResultStr = j.toString() // заголовок
+                (j == 0 && i != 0) -> multiplicationResultStr = i.toString() // крайняя слева колонка
+                (j != 0 && i != 0) -> multiplicationResultStr = (i * j).toString() // результат умножения
+            }
+
+            if (multiplicationResultStr.length < maxMultiplicationResultSize){
+                staffSpaces = " ".repeat(maxMultiplicationResultSize - multiplicationResultStr.length)
+                strToPrint = "$staffSpaces$multiplicationResultStr"
+            } else{
+                strToPrint = multiplicationResultStr
+            }
+            print(strToPrint)
         }
         println()
     }
@@ -77,7 +95,8 @@ fun timesTable() {
 }
 
 fun main() {
-    //println(allUpper("Котлин   - лучший язык программирования, да-да"))
+    println(allUpper("Котлин   - лучший язык программирования, да-да"))
     spyGame("Kotlin!")
     spyGame("oKltni !", false)
+    timesTable(40, 30)
 }
