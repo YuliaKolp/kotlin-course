@@ -2,7 +2,8 @@ package org.lessons.org.lessons.lesson08.homeworks
 
 /*
 8. Игра в разведчика
-Напишите шифратор/дешифратор для строки. Шифровка производится путём замены двух соседних букв между собой: Kotlin шифруется в oKltni. Дешифровка выполняется аналогично.
+Напишите шифратор/дешифратор для строки. Шифровка производится путём замены двух соседних букв между собой: Kotlin
+шифруется в oKltni. Дешифровка выполняется аналогично.
 
 Если длина строки - нечётная, в конец добавляется символ пробела до начала шифрования. Таким образом все шифрованные сообщения будут с чётной длинной. Должно получиться два публичных метода: encrypt() и decrypt() которые принимают строку и печатают результат в консоль.
 
@@ -21,23 +22,22 @@ fun allUpper(inString: String): String{
     var prevSymbolIsChar: Boolean = false
 
     for (symbol in inString){
-        if (!prevSymbolIsChar){
-            if (symbol.isLetter()){
+        if (symbol.isLetter()){
+            if (prevSymbolIsChar){ // слово продолжается, делаем строчными все буквы, кроме первой
+                outString = outString + symbol.lowercase()
+            } else {
                 outString = outString + symbol.uppercaseChar()
-                prevSymbolIsChar = true
-                continue
             }
-            else {
-                prevSymbolIsChar = false
+            prevSymbolIsChar = true
+        } else {
+            outString = outString + symbol
+            prevSymbolIsChar = false
             }
-        }
-        outString = outString + symbol
-
     }
 
     return outString
 }
 
 fun main() {
-    println(allUpper("Котлин   - лучший язык программирования"))
+    println(allUpper("Котлин   - лучший язык программирования, да-да"))
 }
