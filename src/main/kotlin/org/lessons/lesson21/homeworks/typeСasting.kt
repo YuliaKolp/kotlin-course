@@ -66,8 +66,17 @@ fun getStringLengthOrZero02() {
 Напишите функцию sumIntOrDoubleValues, которая принимает список элементов типа Any и возвращает сумму всех
 целочисленных (Int) и вещественных (Double) значений в списке. Все остальные типы должны быть проигнорированы.
  */
-fun sumIntOrDoubleValues(inValue: Any?) {
-
+fun sumIntOrDoubleValues(inList: List<Any?>): Double {
+    var outSum: Double = 0.0
+    for (entry in inList){
+        if (entry is Int) {
+            outSum += entry.toDouble()
+            outSum += entry
+        } else if (entry is Double) {
+            outSum += entry
+        }
+    }
+    return outSum
 }
 
 
@@ -96,8 +105,8 @@ fun tryCastToListAndPrint(inValue: Any?) {
 }
 
 fun main() {
-    var valuesToCheckType = mutableListOf("super-duper", 23, 23f, 587L, mutableListOf(55,"55", null, 787),
-        mutableMapOf(1 to "one", 2 to "two"), 'Q', null)
+    var valuesToCheckType = mutableListOf(0, "super-duper", 23, 23f, 587L, mutableListOf(55,"55", null, 787),
+        mutableMapOf(1 to "one", 2 to "two"), 'Q', null, -100)
 
     println("Task #01------------------------------------------")
     for (entry in valuesToCheckType) {
@@ -115,6 +124,10 @@ fun main() {
         println("Arg is '$entry' string length is ${getStringLengthOrZero(entry)}"
         )
     }
+
+    println("Task #05------------------------------------------")
+    println("Sum is ${sumIntOrDoubleValues(valuesToCheckType)}")
+
 
     println("Task #06------------------------------------------")
     for (entry in valuesToCheckType) {
