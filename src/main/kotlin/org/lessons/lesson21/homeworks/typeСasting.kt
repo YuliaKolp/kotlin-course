@@ -138,4 +138,9 @@ fun main() {
         println()
     }
 
+    println("Task #04------------------------------------------")
+    println(4.toSquare())
+    println(4.2.toSquare())
+    println("4.2".toSquare())
+
 }
