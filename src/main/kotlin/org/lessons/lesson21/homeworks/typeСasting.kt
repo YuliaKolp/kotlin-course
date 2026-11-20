@@ -57,8 +57,10 @@ fun getStringLengthOrZero(inValue: Any?): Int {
 например 4 или 4.2 или “4.2”) и должна вернуть квадрат этого числа. Если придёт число, его нужно возвести в квадрат,
 если придёт строка, то его нужно преобразовать в число через функцию toDouble() и возвести в квадрат.
  */
-fun getStringLengthOrZero02() {
-
+fun Any.toSquare(): Double {
+    val number = (this as? Number)?.toDouble()
+        ?: (this as String).toDouble()
+    return number * number
 }
 
 /*
