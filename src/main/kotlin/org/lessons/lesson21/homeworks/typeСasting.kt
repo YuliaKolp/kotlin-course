@@ -69,16 +69,18 @@ fun Any.toSquare(): Double {
 целочисленных (Int) и вещественных (Double) значений в списке. Все остальные типы должны быть проигнорированы.
  */
 fun sumIntOrDoubleValues(inList: List<Any?>): Double {
-    var outSum: Double = 0.0
-    for (entry in inList){
-        if (entry is Int) {
-            outSum += entry.toDouble()
-            outSum += entry
-        } else if (entry is Double) {
-            outSum += entry
-        }
-    }
-    return outSum
+//    var outSum: Double = 0.0
+//    for (entry in inList){
+//        if (entry is Int) {
+//            outSum += entry.toDouble()
+//            outSum += entry
+//        } else if (entry is Double) {
+//            outSum += entry
+//        }
+//    }
+//    return outSum
+    return inList.sumOf { (it as? Int)?.toDouble() ?: (it as? Double) ?: 0.0 }
+    // return inList.sumOf { (it as? Number)?.toDouble() ?: 0.0 }
 }
 
 
