@@ -79,8 +79,15 @@ fun sumIntOrDoubleValues(inList: List<Any?>): Double {
 //        }
 //    }
 //    return outSum
-    return inList.sumOf { (it as? Int)?.toDouble() ?: (it as? Double) ?: 0.0 }
-    // return inList.sumOf { (it as? Number)?.toDouble() ?: 0.0 }
+    //return inList.sumOf { (it as? Int)?.toDouble() ?: (it as? Double) ?: 0.0 }
+    // return inList.sumOf { (it as? Number)?.toDouble() ?: 0.0 }  // захватил бы ещё и Float, Long, Short и Byte, что нарушило бы условие
+    return inList.sumOf { item ->
+        when (item) {
+            is Int -> item.toDouble() // Smart Cast: item здесь уже Int
+            is Double -> item         // Smart Cast: item здесь уже Double
+            else -> 0.0               // Всё остальное (включая null и Float)
+        }
+    }
 }
 
 
